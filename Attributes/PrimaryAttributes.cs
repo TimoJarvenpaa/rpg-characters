@@ -6,41 +6,46 @@ using System.Threading.Tasks;
 
 namespace RPGCharacters.Attributes
 {
-    internal class PrimaryAttribute
+    internal class PrimaryAttributes
     {
         private int Strength { get; set; }
         private int Dexterity { get; set; }
         private int Intelligence { get; set; }
 
-        public PrimaryAttribute(int strength, int dexterity, int intelligence)
+        public PrimaryAttributes(int strength = 0, int dexterity = 0, int intelligence = 0)
         {
             Strength = strength;
             Dexterity = dexterity;
             Intelligence = intelligence;
         }
 
-        public static PrimaryAttribute operator +(PrimaryAttribute lhs, PrimaryAttribute rhs)
+        public static PrimaryAttributes operator +(PrimaryAttributes lhs, PrimaryAttributes rhs)
         {
-            return new PrimaryAttribute(
+            return new PrimaryAttributes(
                 lhs.Strength + rhs.Strength, 
                 lhs.Dexterity + rhs.Dexterity,
                 lhs.Intelligence + rhs.Intelligence
             );
         }
 
-        public void incrementStrengthBy(int amount)
+        public void IncrementStrengthBy(int amount)
         {
             Strength += amount;
         }
 
-        public void incrementDexterityBy(int amount)
+        public void IncrementDexterityBy(int amount)
         {
             Dexterity += amount;
         }
 
-        public void incrementIntelligenceBy(int amount)
+        public void IncrementIntelligenceBy(int amount)
         {
             Intelligence += amount;
+        }
+
+        public int GetIntelligence()
+        {
+            return Intelligence;
         }
     }
 }

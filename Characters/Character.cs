@@ -1,4 +1,5 @@
 ﻿using RPGCharacters.Attributes;
+using RPGCharacters.Equipments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,19 +15,22 @@ namespace RPGCharacters.Characters
         Rogue,
         Warrior
     }
+
     abstract class Character
     {
-        protected string Name { get; set; }
-        protected int Level { get; set; }
+        protected string CharacterName { get; set; }
+        protected int CharacterLevel { get; set; }
         protected characterClass CharacterClass { get; set; }
-        protected PrimaryAttribute BasePrimaryAttributes;
+        protected PrimaryAttributes BasePrimaryAttributes { get; set; }
+        protected Equipment Equipment;
 
         public Character()
         {
-            Level = 1;
+            CharacterLevel = 1;
+            Equipment = new Equipment();
         }
 
-        public abstract void levelUp();
+        public abstract void LevelUp();
 
     }
 }

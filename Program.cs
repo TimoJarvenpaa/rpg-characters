@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RPGCharacters.Characters;
+using System;
 
 namespace RPGCharacters
 {
@@ -6,7 +7,7 @@ namespace RPGCharacters
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Mage mage = new Mage("Timotheus");
         }
     }
 }
