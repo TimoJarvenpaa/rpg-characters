@@ -23,6 +23,7 @@ namespace RPGCharacters.Characters
         private int characterLevel;
         private characterClass characterClass;
         private PrimaryAttributes basePrimaryAttributes;
+        private PrimaryAttributes totalPrimaryAttributes;
         private Equipment equipment;
 
 
@@ -32,6 +33,7 @@ namespace RPGCharacters.Characters
             characterName = name;
             characterLevel = 1;
             equipment = new Equipment();
+            TotalPrimaryAttributes = basePrimaryAttributes + equipment.CalculateArmorAttributes();
         }
 
         protected int CharacterLevel { get => characterLevel; set => characterLevel = value; }
@@ -39,6 +41,7 @@ namespace RPGCharacters.Characters
         protected string CharacterName { get => characterName; }
         protected PrimaryAttributes BasePrimaryAttributes { get => basePrimaryAttributes; set => basePrimaryAttributes = value; }
         protected Equipment Equipment { get => equipment; }
+        protected PrimaryAttributes TotalPrimaryAttributes { get => totalPrimaryAttributes; set => totalPrimaryAttributes = value; }
 
         protected void equipWeapon(Weapon weapon)
         {
@@ -54,7 +57,7 @@ namespace RPGCharacters.Characters
                     throw new InvalidWeaponException("Warriors can only equip axes, hammers or swords.");
                 if (weapon.ItemLevel > characterLevel)
                     throw new InvalidWeaponException("The character does not meet the level requirement to equip this weapon.");
-                this.equipment.putItemToSlot(weapon, Slot.WEAPON_SLOT);
+                this.equipment.PutItemToSlot(weapon, Slot.WEAPON_SLOT);
 
             }
             catch (Exception ex)
@@ -78,7 +81,7 @@ namespace RPGCharacters.Characters
                     throw new InvalidWeaponException("Warriors can only equip mail or plate armor.");
                 if (armor.ItemLevel > characterLevel)
                     throw new InvalidArmorException("The character does not meet the level requirement to equip this armor.");
-                this.equipment.putItemToSlot(armor, armor.ItemSlot);
+                this.equipment.PutItemToSlot(armor, armor.ItemSlot);
 
             }
             catch (Exception ex)
@@ -86,6 +89,20 @@ namespace RPGCharacters.Characters
                 Console.WriteLine(ex.Message);
             }
 
+        }
+
+        public void equip(Item item)
+        {
+            if (item.ItemSlot == Slot.WEAPON_SLOT)
+            {
+                equipWeapon((item as Weapon));
+            } 
+            else
+            {
+                equipArmor((item as Armor));
+                totalPrimaryAttributes = basePrimaryAttributes + equipment.CalculateArmorAttributes();
+
+            }
         }
 
         protected void IncrementLevelByOne()

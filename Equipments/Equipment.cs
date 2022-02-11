@@ -1,4 +1,5 @@
-﻿using RPGCharacters.Items;
+﻿using RPGCharacters.Attributes;
+using RPGCharacters.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace RPGCharacters.Equipments
             characterEquipment.Add(Slot.LEGS_SLOT, null);
         }
 
-        public void putItemToSlot(Item item, Slot targetSlot)
+        public void PutItemToSlot(Item item, Slot targetSlot)
         {
             if (item.ItemSlot == Slot.WEAPON_SLOT && item.ItemSlot != targetSlot)
             {
@@ -38,6 +39,18 @@ namespace RPGCharacters.Equipments
             }
 
             characterEquipment.Add(targetSlot, item);
+        }
+
+        public PrimaryAttributes CalculateArmorAttributes()
+        {
+            PrimaryAttributes total = new PrimaryAttributes();
+            if (characterEquipment[Slot.HEAD_SLOT] != null)
+                total += (characterEquipment[Slot.HEAD_SLOT] as Armor).Attributes;
+            if (characterEquipment[Slot.BODY_SLOT] != null)
+                total += (characterEquipment[Slot.HEAD_SLOT] as Armor).Attributes;
+            if (characterEquipment[Slot.LEGS_SLOT] != null)
+                total += (characterEquipment[Slot.HEAD_SLOT] as Armor).Attributes;
+            return total;
         }
     }
 }
