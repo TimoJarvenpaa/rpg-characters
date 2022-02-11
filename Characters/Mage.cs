@@ -16,7 +16,7 @@ namespace RPGCharacters.Characters
             BasePrimaryAttributes = new PrimaryAttributes(1, 1, 8);
         }
 
-        protected override void LevelUp()
+        public override void LevelUp()
         {
             IncrementLevelByOne();
             BasePrimaryAttributes.IncrementStrengthBy(1);

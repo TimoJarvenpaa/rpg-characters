@@ -91,7 +91,7 @@ namespace RPGCharacters.Characters
 
         }
 
-        protected void equip(Item item)
+        public void equip(Item item)
         {
             if (item.ItemSlot == Slot.WEAPON_SLOT)
             {
@@ -109,7 +109,7 @@ namespace RPGCharacters.Characters
             this.characterLevel++;
         }
 
-        protected double Damage()
+        public double Damage()
         {
             double weaponDPS = Equipment.GetWeaponDPS();
             if (weaponDPS == 1)
@@ -132,7 +132,7 @@ namespace RPGCharacters.Characters
 
 
 
-        protected void DisplayStats()
+        public void DisplayStats()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Name: " + this.characterName);
@@ -145,7 +145,7 @@ namespace RPGCharacters.Characters
             Console.WriteLine(sb.ToString());
         }
 
-        protected abstract void LevelUp();
+        public abstract void LevelUp();
 
     }
 }

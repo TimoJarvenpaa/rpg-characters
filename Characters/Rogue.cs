@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RPGCharacters.Characters
 {
-    internal class Rogue : Character
+    public class Rogue : Character
     {
         public Rogue(string name) : base(name)
         {
@@ -15,7 +15,7 @@ namespace RPGCharacters.Characters
             BasePrimaryAttributes = new PrimaryAttributes(2, 6, 1);
         }
 
-        protected override void LevelUp()
+        public override void LevelUp()
         {
             IncrementLevelByOne();
             BasePrimaryAttributes.IncrementStrengthBy(1);
