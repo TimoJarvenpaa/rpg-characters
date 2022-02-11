@@ -43,7 +43,7 @@ namespace RPGCharacters.Characters
         protected Equipment Equipment { get => equipment; }
         protected PrimaryAttributes TotalPrimaryAttributes { get => totalPrimaryAttributes; set => totalPrimaryAttributes = value; }
 
-        protected void equipWeapon(Weapon weapon)
+        private void equipWeapon(Weapon weapon)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace RPGCharacters.Characters
         
         }
 
-        protected void equipArmor(Armor armor)
+        private void equipArmor(Armor armor)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace RPGCharacters.Characters
 
         }
 
-        public void equip(Item item)
+        protected void equip(Item item)
         {
             if (item.ItemSlot == Slot.WEAPON_SLOT)
             {
@@ -101,7 +101,6 @@ namespace RPGCharacters.Characters
             {
                 equipArmor((item as Armor));
                 totalPrimaryAttributes = basePrimaryAttributes + equipment.CalculateArmorAttributes();
-
             }
         }
 
@@ -111,6 +110,7 @@ namespace RPGCharacters.Characters
         }
 
         protected abstract void LevelUp();
+        protected abstract double Damage();
 
     }
 }

@@ -23,5 +23,13 @@ namespace RPGCharacters.Characters
             BasePrimaryAttributes.IncrementDexterityBy(1);
             BasePrimaryAttributes.IncrementIntelligenceBy(5);
         }
+
+        protected override double Damage()
+        {
+            double weaponDPS = Equipment.GetWeaponDPS();
+            if (weaponDPS == 1)
+                return 1;
+            return weaponDPS * (1 + TotalPrimaryAttributes.Intelligence / 100);
+        }
     }
 }

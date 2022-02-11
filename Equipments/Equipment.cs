@@ -52,5 +52,12 @@ namespace RPGCharacters.Equipments
                 total += (characterEquipment[Slot.HEAD_SLOT] as Armor).Attributes;
             return total;
         }
+
+        public double GetWeaponDPS()
+        {
+            if (characterEquipment[Slot.WEAPON_SLOT] == null)
+                return 1;
+            return (characterEquipment[Slot.WEAPON_SLOT] as Weapon).DPS;
+        }
     }
 }
