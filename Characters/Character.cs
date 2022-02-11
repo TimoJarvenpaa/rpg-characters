@@ -109,8 +109,43 @@ namespace RPGCharacters.Characters
             this.characterLevel++;
         }
 
+        protected double Damage()
+        {
+            double weaponDPS = Equipment.GetWeaponDPS();
+            if (weaponDPS == 1)
+                return 1;
+
+            switch (characterClass)
+            {
+                case characterClass.Mage:
+                    return weaponDPS * (1 + TotalPrimaryAttributes.Intelligence / 100);
+                case characterClass.Ranger:
+                    return weaponDPS * (1 + TotalPrimaryAttributes.Dexterity / 100);
+                case characterClass.Rogue:
+                    return weaponDPS * (1 + TotalPrimaryAttributes.Dexterity / 100);
+                case characterClass.Warrior:
+                    return weaponDPS * (1 + TotalPrimaryAttributes.Strength / 100);
+                default:
+                    return 1;
+            }
+        }
+
+
+
+        protected void DisplayStats()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Name: " + this.characterName);
+            sb.AppendLine("Level: " + this.characterLevel);
+            sb.AppendLine("Strength: " +  this.totalPrimaryAttributes.Strength);
+            sb.AppendLine("Dexterity: " + this.totalPrimaryAttributes.Dexterity);
+            sb.AppendLine("Intelligence: " + this.totalPrimaryAttributes.Intelligence);
+            sb.AppendLine("Damage: " + Damage());
+
+            Console.WriteLine(sb.ToString());
+        }
+
         protected abstract void LevelUp();
-        protected abstract double Damage();
 
     }
 }
