@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RPGCharacters.Attributes
 {
-    internal class WeaponAttributes
+    public class WeaponAttributes
     {
         private int BaseDamage;
         private int AttackSpeed;

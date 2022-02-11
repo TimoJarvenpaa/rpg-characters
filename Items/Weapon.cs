@@ -19,28 +19,22 @@ namespace RPGCharacters.Items
     }
     internal class Weapon : Item
     {
-        private WeaponType WeaponType { get; }
-        private WeaponAttributes WeaponAttributes;
-        private double DPS { get; }
+        private WeaponType weaponType;
+        private WeaponAttributes weaponAttributes;
+        private double dPS;
 
         public Weapon(string name, int level, Slot slot, WeaponType weaponType, WeaponAttributes weaponAttributes)
         {
             ItemName = name;
             ItemLevel = level;
             ItemSlot = slot;
-            WeaponType = weaponType;
-            WeaponAttributes = weaponAttributes;
-            DPS = WeaponAttributes.CalculateWeaponDPS();
+            this.weaponType = weaponType;
+            this.weaponAttributes = weaponAttributes;
+            dPS = this.WeaponAttributes.CalculateWeaponDPS();
         }
 
-        public WeaponType GetWeaponType()
-        { 
-            return WeaponType;
-        }
-
-        public double GetDPS()
-        {
-            return DPS;
-        }
+        public WeaponType WeaponType { get => this.weaponType; }
+        public WeaponAttributes WeaponAttributes { get => this.weaponAttributes; }
+        public double DPS { get => dPS; }
     }
 }

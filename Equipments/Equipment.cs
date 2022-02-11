@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RPGCharacters.Equipments
 {
-    internal class Equipment
+    public class Equipment
     {
         private Dictionary<Slot, Item> CharacterEquipment;
 

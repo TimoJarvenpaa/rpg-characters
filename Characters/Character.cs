@@ -16,19 +16,27 @@ namespace RPGCharacters.Characters
         Warrior
     }
 
-    abstract class Character
+    public abstract class Character
     {
-        protected string CharacterName { get; set; }
-        protected int CharacterLevel { get; set; }
-        protected characterClass CharacterClass { get; set; }
-        protected PrimaryAttributes BasePrimaryAttributes { get; set; }
-        protected Equipment Equipment;
+        private string characterName;
+        private int characterLevel;
+        private characterClass characterClass;
+        private PrimaryAttributes basePrimaryAttributes;
+        private Equipment equipment;
+
+
 
         public Character()
         {
-            CharacterLevel = 1;
-            Equipment = new Equipment();
+            characterLevel = 1;
+            equipment = new Equipment();
         }
+
+        protected int CharacterLevel { get => characterLevel; set => characterLevel = value; }
+        protected characterClass CharacterClass { get => characterClass; set => characterClass = value; }
+        protected string CharacterName { get => characterName; set => characterName = value; }
+        protected PrimaryAttributes BasePrimaryAttributes { get => basePrimaryAttributes; set => basePrimaryAttributes = value; }
+        protected Equipment Equipment { get => equipment; }
 
         public abstract void LevelUp();
 

@@ -13,16 +13,20 @@ namespace RPGCharacters.Items
         BODY_SLOT,
         LEGS_SLOT
     }
-    abstract class Item
+    public abstract class Item
     {
-        protected string ItemName { get; set; }
-        protected int ItemLevel { get; set; }
-        protected Slot ItemSlot { get; set; }
+        private string itemName;
+        private int itemLevel;
+        private Slot itemSlot;
 
         public Item()
         {
         
         }
+
+        protected string ItemName { get => itemName; set => itemName = value; }
+        protected int ItemLevel { get => itemLevel; set => itemLevel = value; }
+        protected Slot ItemSlot { get => itemSlot; set => itemSlot = value; }
 
 
     }

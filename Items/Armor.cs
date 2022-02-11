@@ -14,18 +14,21 @@ namespace RPGCharacters.Items
         ARMOR_MAIL,
         ARMOR_PLATE
     }
-    internal class Armor : Item
+    public class Armor : Item
     {
-        private ArmorType ArmorType { get; }
-        private PrimaryAttributes Attributes;
+        private ArmorType armorType;
+        private PrimaryAttributes attributes;
 
         public Armor(string name, int level, Slot slot, ArmorType armorType, PrimaryAttributes attributes)
         {
             ItemName = name;
             ItemLevel = level;
             ItemSlot = slot;
-            ArmorType = armorType;
-            Attributes = attributes;
+            this.armorType = armorType;
+            this.attributes = attributes;
         }
+
+        public ArmorType ArmorType { get => this.armorType; }
+        public PrimaryAttributes Attributes { get => this.attributes; }
     }
 }
