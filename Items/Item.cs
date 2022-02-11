@@ -19,14 +19,16 @@ namespace RPGCharacters.Items
         private int itemLevel;
         private Slot itemSlot;
 
-        public Item()
+        public Item(string name, int level, Slot slot)
         {
-        
+            this.itemName = name;
+            this.itemLevel = level;
+            this.itemSlot = slot;
         }
 
-        protected string ItemName { get => itemName; set => itemName = value; }
-        protected int ItemLevel { get => itemLevel; set => itemLevel = value; }
-        protected Slot ItemSlot { get => itemSlot; set => itemSlot = value; }
+        public string ItemName { get => itemName; }
+        public int ItemLevel { get => itemLevel; }
+        public Slot ItemSlot { get => itemSlot; }
 
 
     }

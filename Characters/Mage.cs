@@ -1,4 +1,5 @@
 ﻿using RPGCharacters.Attributes;
+using RPGCharacters.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,13 @@ namespace RPGCharacters.Characters
 {
     public class Mage : Character
     {
-        public Mage(string name)
+        public Mage(string name) : base(name)
         {
-            CharacterName = name;
             CharacterClass = characterClass.Mage;
             BasePrimaryAttributes = new PrimaryAttributes(1, 1, 8);
         }
-        public override void LevelUp()
+
+        protected override void LevelUp()
         {
             BasePrimaryAttributes.IncrementStrengthBy(1);
             BasePrimaryAttributes.IncrementDexterityBy(1);

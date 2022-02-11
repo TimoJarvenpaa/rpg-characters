@@ -19,11 +19,8 @@ namespace RPGCharacters.Items
         private ArmorType armorType;
         private PrimaryAttributes attributes;
 
-        public Armor(string name, int level, Slot slot, ArmorType armorType, PrimaryAttributes attributes)
+        public Armor(string name, int level, Slot slot, ArmorType armorType, PrimaryAttributes attributes) : base(name, level, slot)
         {
-            ItemName = name;
-            ItemLevel = level;
-            ItemSlot = slot;
             this.armorType = armorType;
             this.attributes = attributes;
         }

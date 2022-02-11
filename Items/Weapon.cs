@@ -17,17 +17,14 @@ namespace RPGCharacters.Items
         WEAPON_SWORD,
         WEAPON_WAND
     }
-    internal class Weapon : Item
+    public class Weapon : Item
     {
         private WeaponType weaponType;
         private WeaponAttributes weaponAttributes;
         private double dPS;
 
-        public Weapon(string name, int level, Slot slot, WeaponType weaponType, WeaponAttributes weaponAttributes)
+        public Weapon(string name, int level, Slot slot, WeaponType weaponType, WeaponAttributes weaponAttributes) : base(name, level, slot)
         {
-            ItemName = name;
-            ItemLevel = level;
-            ItemSlot = slot;
             this.weaponType = weaponType;
             this.weaponAttributes = weaponAttributes;
             dPS = this.WeaponAttributes.CalculateWeaponDPS();
