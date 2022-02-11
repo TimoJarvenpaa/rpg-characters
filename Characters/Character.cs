@@ -87,6 +87,12 @@ namespace RPGCharacters.Characters
             }
 
         }
+
+        protected void IncrementLevelByOne()
+        {
+            this.characterLevel++;
+        }
+
         protected abstract void LevelUp();
 
     }

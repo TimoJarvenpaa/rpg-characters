@@ -18,6 +18,7 @@ namespace RPGCharacters.Characters
 
         protected override void LevelUp()
         {
+            IncrementLevelByOne();
             BasePrimaryAttributes.IncrementStrengthBy(1);
             BasePrimaryAttributes.IncrementDexterityBy(1);
             BasePrimaryAttributes.IncrementIntelligenceBy(5);
