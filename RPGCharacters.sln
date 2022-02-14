@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPGCharacters", "RPGCharacters.csproj", "{B5251642-2AD8-4C77-B8E6-81ECA03793AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPGCharacters", "RPGCharacters\RPGCharacters.csproj", "{B5251642-2AD8-4C77-B8E6-81ECA03793AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGCharactersTests", "..\RPGCharactersTests\RPGCharactersTests.csproj", "{749AD1A1-28FC-461C-A90D-9C52B3050753}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RPGCharactersTests", "RPGCharactersTests\RPGCharactersTests.csproj", "{749AD1A1-28FC-461C-A90D-9C52B3050753}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

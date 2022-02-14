@@ -11,6 +11,7 @@ namespace RPGCharacters
             Ranger ranger = new Ranger("Legolas");
             Rogue rogue = new Rogue("Aragorn");
             Warrior warrior = new Warrior("Gimli");
+            Console.WriteLine("Hello");
         }
     }
 }

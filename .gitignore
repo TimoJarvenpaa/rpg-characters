@@ -137,3 +137,9 @@ _NCrunch*
 .vs/
 bin/
 obj/
+RPGCharacters/.vs/
+RPGCharacters/bin/
+RPGCharacters/obj/
+RPGCharactersTests/.vs/
+RPGCharactersTests/bin/
+RPGCharactersTests/obj/
