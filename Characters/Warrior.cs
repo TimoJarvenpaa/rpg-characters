@@ -11,7 +11,7 @@ namespace RPGCharacters.Characters
     {
         public Warrior(string name) : base(name)
         {
-            CharacterClass = characterClass.Mage;
+            CharacterClass = characterClass.Warrior;
             BasePrimaryAttributes = new PrimaryAttributes(5, 2, 1);
         }
 

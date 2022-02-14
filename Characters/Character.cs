@@ -39,7 +39,7 @@ namespace RPGCharacters.Characters
         public int CharacterLevel { get => characterLevel; protected set => characterLevel = value; }
         protected characterClass CharacterClass { get => characterClass; set => characterClass = value; }
         protected string CharacterName { get => characterName; }
-        protected PrimaryAttributes BasePrimaryAttributes { get => basePrimaryAttributes; set => basePrimaryAttributes = value; }
+        public PrimaryAttributes BasePrimaryAttributes { get => basePrimaryAttributes; protected set => basePrimaryAttributes = value; }
         protected Equipment Equipment { get => equipment; }
         protected PrimaryAttributes TotalPrimaryAttributes { get => totalPrimaryAttributes; set => totalPrimaryAttributes = value; }
 

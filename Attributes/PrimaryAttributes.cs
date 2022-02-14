@@ -47,6 +47,12 @@ namespace RPGCharacters.Attributes
             intelligence += amount;
         }
 
-
+        public override bool Equals(object obj)
+        {
+            return obj is PrimaryAttributes attributes &&
+                   strength == attributes.strength &&
+                   dexterity == attributes.dexterity &&
+                   intelligence == attributes.intelligence;
+        }
     }
 }
