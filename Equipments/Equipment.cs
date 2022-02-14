@@ -38,7 +38,7 @@ namespace RPGCharacters.Equipments
                 throw new InvalidArmorException("Armor can only be equipped in the correct armor slot.");
             }
 
-            characterEquipment.Add(targetSlot, item);
+            characterEquipment[targetSlot] = item;
         }
 
         public PrimaryAttributes CalculateArmorAttributes()
@@ -47,16 +47,16 @@ namespace RPGCharacters.Equipments
             if (characterEquipment[Slot.HEAD_SLOT] != null)
                 total += (characterEquipment[Slot.HEAD_SLOT] as Armor).Attributes;
             if (characterEquipment[Slot.BODY_SLOT] != null)
-                total += (characterEquipment[Slot.HEAD_SLOT] as Armor).Attributes;
+                total += (characterEquipment[Slot.BODY_SLOT] as Armor).Attributes;
             if (characterEquipment[Slot.LEGS_SLOT] != null)
-                total += (characterEquipment[Slot.HEAD_SLOT] as Armor).Attributes;
+                total += (characterEquipment[Slot.LEGS_SLOT] as Armor).Attributes;
             return total;
         }
 
         public double GetWeaponDPS()
         {
             if (characterEquipment[Slot.WEAPON_SLOT] == null)
-                return 1;
+                return 1.00;
             return (characterEquipment[Slot.WEAPON_SLOT] as Weapon).DPS;
         }
     }

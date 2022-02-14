@@ -54,5 +54,10 @@ namespace RPGCharacters.Attributes
                    dexterity == attributes.dexterity &&
                    intelligence == attributes.intelligence;
         }
+
+        public override int GetHashCode()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

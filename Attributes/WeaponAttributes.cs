@@ -9,9 +9,9 @@ namespace RPGCharacters.Attributes
     public class WeaponAttributes
     {
         private int BaseDamage;
-        private int AttackSpeed;
+        private double AttackSpeed;
 
-        public WeaponAttributes(int baseDamage, int attackSpeed)
+        public WeaponAttributes(int baseDamage, double attackSpeed)
         {
             BaseDamage = baseDamage;
             AttackSpeed = attackSpeed;

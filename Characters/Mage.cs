@@ -14,6 +14,7 @@ namespace RPGCharacters.Characters
         {
             CharacterClass = characterClass.Mage;
             BasePrimaryAttributes = new PrimaryAttributes(1, 1, 8);
+            TotalPrimaryAttributes = BasePrimaryAttributes;
         }
 
         public override void LevelUp()

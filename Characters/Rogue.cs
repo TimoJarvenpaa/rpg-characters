@@ -13,6 +13,7 @@ namespace RPGCharacters.Characters
         {
             CharacterClass = characterClass.Rogue;
             BasePrimaryAttributes = new PrimaryAttributes(2, 6, 1);
+            TotalPrimaryAttributes = BasePrimaryAttributes;
         }
 
         public override void LevelUp()

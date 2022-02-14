@@ -33,7 +33,6 @@ namespace RPGCharacters.Characters
             characterName = name;
             characterLevel = 1;
             equipment = new Equipment();
-            TotalPrimaryAttributes = basePrimaryAttributes;
         }
 
         public int CharacterLevel { get => characterLevel; protected set => characterLevel = value; }
@@ -47,22 +46,22 @@ namespace RPGCharacters.Characters
         {
             try
             {
-                if (this.characterClass == characterClass.Mage && (weapon.WeaponType != WeaponType.WEAPON_STAFF || weapon.WeaponType != WeaponType.WEAPON_WAND))
+                if (this.characterClass == characterClass.Mage && weapon.WeaponType != WeaponType.WEAPON_STAFF && weapon.WeaponType != WeaponType.WEAPON_WAND)
                     throw new InvalidWeaponException("Mages can only equip staffs or wands.");
                 if (this.characterClass == characterClass.Ranger && weapon.WeaponType != WeaponType.WEAPON_BOW)
                     throw new InvalidWeaponException("Rangers can only equip bows.");
-                if (this.characterClass == characterClass.Rogue && (weapon.WeaponType != WeaponType.WEAPON_DAGGER || weapon.WeaponType != WeaponType.WEAPON_SWORD))
+                if (this.characterClass == characterClass.Rogue && weapon.WeaponType != WeaponType.WEAPON_DAGGER && weapon.WeaponType != WeaponType.WEAPON_SWORD)
                     throw new InvalidWeaponException("Rogues can only equip daggers or swords.");
-                if (this.characterClass == characterClass.Warrior && (weapon.WeaponType != WeaponType.WEAPON_AXE || weapon.WeaponType != WeaponType.WEAPON_HAMMER || weapon.WeaponType != WeaponType.WEAPON_SWORD))
+                if (this.characterClass == characterClass.Warrior && weapon.WeaponType != WeaponType.WEAPON_AXE && weapon.WeaponType != WeaponType.WEAPON_HAMMER && weapon.WeaponType != WeaponType.WEAPON_SWORD)
                     throw new InvalidWeaponException("Warriors can only equip axes, hammers or swords.");
                 if (weapon.ItemLevel > characterLevel)
                     throw new InvalidWeaponException("The character does not meet the level requirement to equip this weapon.");
                 this.equipment.PutItemToSlot(weapon, Slot.WEAPON_SLOT);
 
             }
-            catch (Exception ex)
+            catch (InvalidWeaponException ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new InvalidWeaponException(ex.Message);
             }
         
         }
@@ -73,34 +72,47 @@ namespace RPGCharacters.Characters
             {
                 if (this.characterClass == characterClass.Mage && armor.ArmorType != ArmorType.ARMOR_CLOTH)
                     throw new InvalidArmorException("Mages can only equip cloth armor.");
-                if (this.characterClass == characterClass.Ranger && (armor.ArmorType != ArmorType.ARMOR_LEATHER || armor.ArmorType != ArmorType.ARMOR_MAIL))
-                    throw new InvalidWeaponException("Rangers can only equip leather or mail armor.");
-                if (this.characterClass == characterClass.Rogue && (armor.ArmorType != ArmorType.ARMOR_LEATHER || armor.ArmorType != ArmorType.ARMOR_MAIL))
-                    throw new InvalidWeaponException("Rogues can only equip leather or mail armor.");
-                if (this.characterClass == characterClass.Warrior && (armor.ArmorType != ArmorType.ARMOR_MAIL || armor.ArmorType != ArmorType.ARMOR_PLATE))
-                    throw new InvalidWeaponException("Warriors can only equip mail or plate armor.");
+                if (this.characterClass == characterClass.Ranger && armor.ArmorType != ArmorType.ARMOR_LEATHER && armor.ArmorType != ArmorType.ARMOR_MAIL)
+                    throw new InvalidArmorException("Rangers can only equip leather or mail armor.");
+                if (this.characterClass == characterClass.Rogue && armor.ArmorType != ArmorType.ARMOR_LEATHER && armor.ArmorType != ArmorType.ARMOR_MAIL)
+                    throw new InvalidArmorException("Rogues can only equip leather or mail armor.");
+                if (this.characterClass == characterClass.Warrior && armor.ArmorType != ArmorType.ARMOR_MAIL && armor.ArmorType != ArmorType.ARMOR_PLATE)
+                    throw new InvalidArmorException("Warriors can only equip mail or plate armor.");
                 if (armor.ItemLevel > characterLevel)
                     throw new InvalidArmorException("The character does not meet the level requirement to equip this armor.");
                 this.equipment.PutItemToSlot(armor, armor.ItemSlot);
 
             }
-            catch (Exception ex)
+            catch (InvalidArmorException ex)
             {
-                Console.WriteLine(ex.Message);
+                throw new InvalidArmorException(ex.Message);
             }
 
         }
 
-        public void equip(Item item)
+        public string equip(Item item)
         {
-            if (item.ItemSlot == Slot.WEAPON_SLOT)
+            try
             {
-                equipWeapon((item as Weapon));
-            } 
-            else
+                if (item.ItemSlot == Slot.WEAPON_SLOT)
+                {
+                    equipWeapon((item as Weapon));
+                    return "New weapon equipped!";
+                }
+                else
+                {
+                    equipArmor((item as Armor));
+                    this.totalPrimaryAttributes = this.basePrimaryAttributes + this.equipment.CalculateArmorAttributes();
+                    return "New armor equipped!";
+                }
+            }
+            catch (InvalidWeaponException ex)
             {
-                equipArmor((item as Armor));
-                totalPrimaryAttributes = basePrimaryAttributes + equipment.CalculateArmorAttributes();
+                throw new InvalidWeaponException(ex.Message);
+            }
+            catch (InvalidArmorException ex)
+            {
+                throw new InvalidArmorException(ex.Message);
             }
         }
 
@@ -112,27 +124,25 @@ namespace RPGCharacters.Characters
         public double Damage()
         {
             double weaponDPS = Equipment.GetWeaponDPS();
-            if (weaponDPS == 1)
-                return 1;
 
             switch (characterClass)
             {
                 case characterClass.Mage:
-                    return weaponDPS * (1 + TotalPrimaryAttributes.Intelligence / 100);
+                    return Math.Round(weaponDPS * (1 + TotalPrimaryAttributes.Intelligence / 100.00), 2);
                 case characterClass.Ranger:
-                    return weaponDPS * (1 + TotalPrimaryAttributes.Dexterity / 100);
+                    return Math.Round(weaponDPS * (1 + TotalPrimaryAttributes.Dexterity / 100.00), 2);
                 case characterClass.Rogue:
-                    return weaponDPS * (1 + TotalPrimaryAttributes.Dexterity / 100);
+                    return Math.Round(weaponDPS * (1 + TotalPrimaryAttributes.Dexterity / 100.00), 2);
                 case characterClass.Warrior:
-                    return weaponDPS * (1 + TotalPrimaryAttributes.Strength / 100);
+                    return Math.Round(weaponDPS * (1  + TotalPrimaryAttributes.Strength / 100.00), 2);
                 default:
-                    return 1;
+                    return 1.00;
             }
         }
 
 
 
-        public void DisplayStats()
+        public string DisplayStats()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Name: " + this.characterName);
@@ -143,6 +153,7 @@ namespace RPGCharacters.Characters
             sb.AppendLine("Damage: " + Damage());
 
             Console.WriteLine(sb.ToString());
+            return sb.ToString();
         }
 
         public abstract void LevelUp();

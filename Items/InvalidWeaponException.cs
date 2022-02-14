@@ -8,11 +8,9 @@ namespace RPGCharacters.Items
 {
     public class InvalidWeaponException : Exception
     {
-        public InvalidWeaponException(string message) : base(message)
+        public InvalidWeaponException(string message = "The weapon cannot be equipped.") : base(message)
         {
 
         }
-
-        public override string Message => "The weapon cannot be equipped.";
     }
 }
