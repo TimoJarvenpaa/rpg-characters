@@ -33,10 +33,10 @@ namespace RPGCharacters.Characters
             characterName = name;
             characterLevel = 1;
             equipment = new Equipment();
-            TotalPrimaryAttributes = basePrimaryAttributes + equipment.CalculateArmorAttributes();
+            TotalPrimaryAttributes = basePrimaryAttributes;
         }
 
-        protected int CharacterLevel { get => characterLevel; set => characterLevel = value; }
+        public int CharacterLevel { get => characterLevel; protected set => characterLevel = value; }
         protected characterClass CharacterClass { get => characterClass; set => characterClass = value; }
         protected string CharacterName { get => characterName; }
         protected PrimaryAttributes BasePrimaryAttributes { get => basePrimaryAttributes; set => basePrimaryAttributes = value; }
