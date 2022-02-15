@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGCharacters.Attributes
 {
@@ -17,6 +13,10 @@ namespace RPGCharacters.Attributes
             AttackSpeed = attackSpeed;
         }
 
+        /// <summary>
+        /// Calculates the weapon's damage per second
+        /// </summary>
+        /// <returns>DPS of the weapon</returns>
         public double CalculateWeaponDPS()
         {
             return BaseDamage * AttackSpeed;

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGCharacters.Attributes
 {
@@ -23,6 +19,12 @@ namespace RPGCharacters.Attributes
         public int Dexterity { get => dexterity; }
         public int Intelligence { get => intelligence; }
 
+        /// <summary>
+        /// Allows the summation of PrimaryAttributes objects
+        /// </summary>
+        /// <param name="lhs">The left hand side operand</param>
+        /// <param name="rhs">The right hand side operand</param>
+        /// <returns>A new PrimaryAttributes object with the combined STR, DEX and INT values of the arguments</returns>
         public static PrimaryAttributes operator +(PrimaryAttributes lhs, PrimaryAttributes rhs)
         {
             return new PrimaryAttributes(
@@ -32,16 +34,28 @@ namespace RPGCharacters.Attributes
             );
         }
 
+        /// <summary>
+        /// Increases the strength attribute by a given amount
+        /// </summary>
+        /// <param name="amount">An integer representing the amount to increment</param>
         public void IncrementStrengthBy(int amount)
         {
             strength += amount;
         }
 
+        /// <summary>
+        /// Increases the dexterity attribute by a given amount
+        /// </summary>
+        /// <param name="amount">An integer representing the amount to increment</param>
         public void IncrementDexterityBy(int amount)
         {
             dexterity += amount;
         }
 
+        /// <summary>
+        /// Increases the intelligence attribute by a given amount
+        /// </summary>
+        /// <param name="amount">An integer representing the amount to increment</param>
         public void IncrementIntelligenceBy(int amount)
         {
             intelligence += amount;

@@ -7,11 +7,11 @@ namespace RPGCharacters
     {
         static void Main(string[] args)
         {
+            // No UI or interactive functionality due to the scope of the project
             Mage mage = new Mage("Gandalf");
             Ranger ranger = new Ranger("Legolas");
             Rogue rogue = new Rogue("Aragorn");
             Warrior warrior = new Warrior("Gimli");
-            Console.WriteLine("Hello");
         }
     }
 }

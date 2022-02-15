@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGCharacters.Items
 {
@@ -29,7 +25,6 @@ namespace RPGCharacters.Items
         public string ItemName { get => itemName; }
         public int ItemLevel { get => itemLevel; }
         public Slot ItemSlot { get => itemSlot; }
-
 
     }
 }

@@ -2,10 +2,7 @@
 using RPGCharacters.Equipments;
 using RPGCharacters.Items;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace RPGCharacters.Characters
 {
@@ -26,8 +23,6 @@ namespace RPGCharacters.Characters
         private PrimaryAttributes totalPrimaryAttributes;
         private Equipment equipment;
 
-
-
         public Character(string name)
         {
             characterName = name;
@@ -35,14 +30,22 @@ namespace RPGCharacters.Characters
             equipment = new Equipment();
         }
 
+        #region Getters and Setters
         public int CharacterLevel { get => characterLevel; protected set => characterLevel = value; }
         protected characterClass CharacterClass { get => characterClass; set => characterClass = value; }
         protected string CharacterName { get => characterName; }
         public PrimaryAttributes BasePrimaryAttributes { get => basePrimaryAttributes; protected set => basePrimaryAttributes = value; }
         protected Equipment Equipment { get => equipment; }
         protected PrimaryAttributes TotalPrimaryAttributes { get => totalPrimaryAttributes; set => totalPrimaryAttributes = value; }
+        #endregion
 
-        private void equipWeapon(Weapon weapon)
+        /// <summary>
+        /// A private method encapsulating the equipping of weapons and 
+        /// the various restrictions regarding weapon types and level requirements.
+        /// </summary>
+        /// <param name="weapon">Weapon object the character is trying to equip</param>
+        /// <exception cref="InvalidWeaponException">When a weapon can't be equipped</exception>
+        private void EquipWeapon(Weapon weapon)
         {
             try
             {
@@ -66,7 +69,13 @@ namespace RPGCharacters.Characters
         
         }
 
-        private void equipArmor(Armor armor)
+        /// <summary>
+        /// A private method encapsulating the equipping of armor and
+        /// the various restrictions regarding armor types and level requirements.
+        /// </summary>
+        /// <param name="armor">Armor object the character is trying to equip</param>
+        /// <exception cref="InvalidArmorException">When an armor can't be equipped</exception>
+        private void EquipArmor(Armor armor)
         {
             try
             {
@@ -90,18 +99,26 @@ namespace RPGCharacters.Characters
 
         }
 
-        public string equip(Item item)
+        /// <summary>
+        /// Tries to equip the character with a given item. In case of armor,
+        /// updates the total primary attributes of a character accordingly.
+        /// </summary>
+        /// <param name="item">Item to equip. Can be of type Weapon or Armor</param>
+        /// <returns>A success message if the item was equipped</returns>
+        /// <exception cref="InvalidWeaponException">When a weapon can't be equipped</exception>
+        /// <exception cref="InvalidArmorException">When an armor can't be equipped</exception>
+        public string Equip(Item item)
         {
             try
             {
                 if (item.ItemSlot == Slot.WEAPON_SLOT)
                 {
-                    equipWeapon((item as Weapon));
+                    EquipWeapon((item as Weapon));
                     return "New weapon equipped!";
                 }
                 else
                 {
-                    equipArmor((item as Armor));
+                    EquipArmor((item as Armor));
                     this.totalPrimaryAttributes = this.basePrimaryAttributes + this.equipment.CalculateArmorAttributes();
                     return "New armor equipped!";
                 }
@@ -116,11 +133,18 @@ namespace RPGCharacters.Characters
             }
         }
 
+        /// <summary>
+        /// Increments the character's level by one.
+        /// </summary>
         protected void IncrementLevelByOne()
         {
             this.characterLevel++;
         }
 
+        /// <summary>
+        /// Calculates the damage value of a character.
+        /// </summary>
+        /// <returns>Character's damage value rounded to two decimals</returns>
         public double Damage()
         {
             double weaponDPS = Equipment.GetWeaponDPS();
@@ -140,8 +164,10 @@ namespace RPGCharacters.Characters
             }
         }
 
-
-
+        /// <summary>
+        /// Prints and returns a summary of the character information.
+        /// </summary>
+        /// <returns>A multiline summary of the character information</returns>
         public string DisplayStats()
         {
             StringBuilder sb = new StringBuilder();
@@ -156,6 +182,9 @@ namespace RPGCharacters.Characters
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Increases charater's level and base primary attributes. Implementation is class specific.
+        /// </summary>
         public abstract void LevelUp();
 
     }
