@@ -8,10 +8,10 @@ namespace RPGCharacters.Characters
 {
     public enum characterClass
     {
-        Mage,
-        Ranger,
-        Rogue,
-        Warrior
+        MAGE,
+        RANGER,
+        ROGUE,
+        WARRIOR
     }
 
     public abstract class Character
@@ -49,13 +49,13 @@ namespace RPGCharacters.Characters
         {
             try
             {
-                if (this.characterClass == characterClass.Mage && weapon.WeaponType != WeaponType.WEAPON_STAFF && weapon.WeaponType != WeaponType.WEAPON_WAND)
+                if (this.characterClass == characterClass.MAGE && weapon.WeaponType != WeaponType.WEAPON_STAFF && weapon.WeaponType != WeaponType.WEAPON_WAND)
                     throw new InvalidWeaponException("Mages can only equip staffs or wands.");
-                if (this.characterClass == characterClass.Ranger && weapon.WeaponType != WeaponType.WEAPON_BOW)
+                if (this.characterClass == characterClass.RANGER && weapon.WeaponType != WeaponType.WEAPON_BOW)
                     throw new InvalidWeaponException("Rangers can only equip bows.");
-                if (this.characterClass == characterClass.Rogue && weapon.WeaponType != WeaponType.WEAPON_DAGGER && weapon.WeaponType != WeaponType.WEAPON_SWORD)
+                if (this.characterClass == characterClass.ROGUE && weapon.WeaponType != WeaponType.WEAPON_DAGGER && weapon.WeaponType != WeaponType.WEAPON_SWORD)
                     throw new InvalidWeaponException("Rogues can only equip daggers or swords.");
-                if (this.characterClass == characterClass.Warrior && weapon.WeaponType != WeaponType.WEAPON_AXE && weapon.WeaponType != WeaponType.WEAPON_HAMMER && weapon.WeaponType != WeaponType.WEAPON_SWORD)
+                if (this.characterClass == characterClass.WARRIOR && weapon.WeaponType != WeaponType.WEAPON_AXE && weapon.WeaponType != WeaponType.WEAPON_HAMMER && weapon.WeaponType != WeaponType.WEAPON_SWORD)
                     throw new InvalidWeaponException("Warriors can only equip axes, hammers or swords.");
                 if (weapon.ItemLevel > characterLevel)
                     throw new InvalidWeaponException("The character does not meet the level requirement to equip this weapon.");
@@ -79,13 +79,13 @@ namespace RPGCharacters.Characters
         {
             try
             {
-                if (this.characterClass == characterClass.Mage && armor.ArmorType != ArmorType.ARMOR_CLOTH)
+                if (this.characterClass == characterClass.MAGE && armor.ArmorType != ArmorType.ARMOR_CLOTH)
                     throw new InvalidArmorException("Mages can only equip cloth armor.");
-                if (this.characterClass == characterClass.Ranger && armor.ArmorType != ArmorType.ARMOR_LEATHER && armor.ArmorType != ArmorType.ARMOR_MAIL)
+                if (this.characterClass == characterClass.RANGER && armor.ArmorType != ArmorType.ARMOR_LEATHER && armor.ArmorType != ArmorType.ARMOR_MAIL)
                     throw new InvalidArmorException("Rangers can only equip leather or mail armor.");
-                if (this.characterClass == characterClass.Rogue && armor.ArmorType != ArmorType.ARMOR_LEATHER && armor.ArmorType != ArmorType.ARMOR_MAIL)
+                if (this.characterClass == characterClass.ROGUE && armor.ArmorType != ArmorType.ARMOR_LEATHER && armor.ArmorType != ArmorType.ARMOR_MAIL)
                     throw new InvalidArmorException("Rogues can only equip leather or mail armor.");
-                if (this.characterClass == characterClass.Warrior && armor.ArmorType != ArmorType.ARMOR_MAIL && armor.ArmorType != ArmorType.ARMOR_PLATE)
+                if (this.characterClass == characterClass.WARRIOR && armor.ArmorType != ArmorType.ARMOR_MAIL && armor.ArmorType != ArmorType.ARMOR_PLATE)
                     throw new InvalidArmorException("Warriors can only equip mail or plate armor.");
                 if (armor.ItemLevel > characterLevel)
                     throw new InvalidArmorException("The character does not meet the level requirement to equip this armor.");
@@ -151,13 +151,13 @@ namespace RPGCharacters.Characters
 
             switch (characterClass)
             {
-                case characterClass.Mage:
+                case characterClass.MAGE:
                     return Math.Round(weaponDPS * (1 + TotalPrimaryAttributes.Intelligence / 100.00), 2);
-                case characterClass.Ranger:
+                case characterClass.RANGER:
                     return Math.Round(weaponDPS * (1 + TotalPrimaryAttributes.Dexterity / 100.00), 2);
-                case characterClass.Rogue:
+                case characterClass.ROGUE:
                     return Math.Round(weaponDPS * (1 + TotalPrimaryAttributes.Dexterity / 100.00), 2);
-                case characterClass.Warrior:
+                case characterClass.WARRIOR:
                     return Math.Round(weaponDPS * (1  + TotalPrimaryAttributes.Strength / 100.00), 2);
                 default:
                     return 1.00;

@@ -7,6 +7,7 @@ namespace RPGCharactersTests
 {
     public class CharacterTests
     {
+        #region Character level
         [Fact]
         public void Creation_CreateNewCharacter_ShouldBeLevel1()
         {
@@ -31,6 +32,7 @@ namespace RPGCharactersTests
             // Assert
             Assert.Equal(expected, actual);
         }
+        #endregion
 
         #region Default primary attributes
         [Fact]

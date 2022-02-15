@@ -6,7 +6,7 @@ namespace RPGCharacters.Characters
     {
         public Rogue(string name) : base(name)
         {
-            CharacterClass = characterClass.Rogue;
+            CharacterClass = characterClass.ROGUE;
             BasePrimaryAttributes = new PrimaryAttributes(2, 6, 1);
             TotalPrimaryAttributes = BasePrimaryAttributes;
         }

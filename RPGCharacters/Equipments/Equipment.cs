@@ -58,11 +58,11 @@ namespace RPGCharacters.Equipments
         {
             PrimaryAttributes total = new PrimaryAttributes();
             if (characterEquipment[Slot.HEAD_SLOT] != null)
-                total += (characterEquipment[Slot.HEAD_SLOT] as Armor).Attributes;
+                total += (characterEquipment[Slot.HEAD_SLOT] as Armor).ArmorAttributes;
             if (characterEquipment[Slot.BODY_SLOT] != null)
-                total += (characterEquipment[Slot.BODY_SLOT] as Armor).Attributes;
+                total += (characterEquipment[Slot.BODY_SLOT] as Armor).ArmorAttributes;
             if (characterEquipment[Slot.LEGS_SLOT] != null)
-                total += (characterEquipment[Slot.LEGS_SLOT] as Armor).Attributes;
+                total += (characterEquipment[Slot.LEGS_SLOT] as Armor).ArmorAttributes;
             return total;
         }
 

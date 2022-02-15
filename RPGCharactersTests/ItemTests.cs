@@ -18,8 +18,9 @@ namespace RPGCharactersTests
             WeaponAttributes weaponAttributes = new WeaponAttributes(7, 1.1);
             Weapon testAxe = new Weapon("Common axe", 2, Slot.WEAPON_SLOT, WeaponType.WEAPON_AXE, weaponAttributes);
             // Act & Assert
-            Assert.Throws<InvalidWeaponException>(() => warrior.equip(testAxe));
+            Assert.Throws<InvalidWeaponException>(() => warrior.Equip(testAxe));
         }
+
         [Fact]
         public void Equip_ArmorLevelHigherThanCharacterLevel_ShouldThrowInvalidArmorException()
         {
@@ -28,7 +29,7 @@ namespace RPGCharactersTests
             PrimaryAttributes armorAttributes = new PrimaryAttributes(1, 0, 0);
             Armor testPlateBody = new Armor("Common plate body armor", 2, Slot.BODY_SLOT, ArmorType.ARMOR_PLATE, armorAttributes);
             // Act & Assert
-            Assert.Throws<InvalidArmorException>(() => warrior.equip(testPlateBody));
+            Assert.Throws<InvalidArmorException>(() => warrior.Equip(testPlateBody));
         }
         #endregion
 
@@ -41,7 +42,7 @@ namespace RPGCharactersTests
             WeaponAttributes weaponAttributes = new WeaponAttributes(12, 0.8);
             Weapon testBow = new Weapon("Common bow", 1, Slot.WEAPON_SLOT, WeaponType.WEAPON_BOW, weaponAttributes);
             // Act & Assert
-            Assert.Throws<InvalidWeaponException>(() => warrior.equip(testBow));
+            Assert.Throws<InvalidWeaponException>(() => warrior.Equip(testBow));
         }
 
         [Fact]
@@ -52,7 +53,7 @@ namespace RPGCharactersTests
             PrimaryAttributes armorAttributes = new PrimaryAttributes(0, 0, 5);
             Armor testClothHead = new Armor("Common cloth head armor", 1, Slot.HEAD_SLOT, ArmorType.ARMOR_CLOTH, armorAttributes);
             // Act & Assert
-            Assert.Throws<InvalidArmorException>(() => warrior.equip(testClothHead));
+            Assert.Throws<InvalidArmorException>(() => warrior.Equip(testClothHead));
         }
         #endregion
 
@@ -66,10 +67,11 @@ namespace RPGCharactersTests
             Weapon testAxe = new Weapon("Common axe", 1, Slot.WEAPON_SLOT, WeaponType.WEAPON_AXE, weaponAttributes);
             string expected = "New weapon equipped!";
             // Act
-            string actual = warrior.equip(testAxe);
+            string actual = warrior.Equip(testAxe);
             // Assert
             Assert.Equal(expected, actual);
         }
+
         [Fact]
         public void Equip_ValidArmor_ShouldReturnSucceessMessage()
         {
@@ -79,7 +81,7 @@ namespace RPGCharactersTests
             Armor testPlateBody = new Armor("Common plate body armor", 1, Slot.BODY_SLOT, ArmorType.ARMOR_PLATE, armorAttributes);
             string expected = "New armor equipped!";
             // Act
-            string actual = warrior.equip(testPlateBody);
+            string actual = warrior.Equip(testPlateBody);
             // Assert
             Assert.Equal(expected, actual);
         }
@@ -97,6 +99,7 @@ namespace RPGCharactersTests
             // Assert
             Assert.Equal(expected, actual);
         }
+
         [Fact]
         public void Damage_WithValidWeapon_ShouldBeCorrect()
         {
@@ -104,13 +107,14 @@ namespace RPGCharactersTests
             Warrior warrior = new Warrior("TestWarrior");
             WeaponAttributes weaponAttributes = new WeaponAttributes(7, 1.1);
             Weapon testAxe = new Weapon("Common axe", 1, Slot.WEAPON_SLOT, WeaponType.WEAPON_AXE, weaponAttributes);
-            warrior.equip(testAxe);
+            warrior.Equip(testAxe);
             double expected = Math.Round((7 * 1.1) * (1 + (5 / 100.00)), 2);
             // Act
             double actual = warrior.Damage();
             // Assert
             Assert.Equal(expected, actual);
         }
+
         [Fact]
         public void Damage_WithValidWeaponAndArmor_ShouldBeCorrect()
         {
@@ -120,8 +124,8 @@ namespace RPGCharactersTests
             Weapon testAxe = new Weapon("Common axe", 1, Slot.WEAPON_SLOT, WeaponType.WEAPON_AXE, weaponAttributes);
             PrimaryAttributes armorAttributes = new PrimaryAttributes(1, 0, 0);
             Armor testPlateBody = new Armor("Common plate body armor", 1, Slot.BODY_SLOT, ArmorType.ARMOR_PLATE, armorAttributes);
-            warrior.equip(testAxe);
-            warrior.equip(testPlateBody);
+            warrior.Equip(testAxe);
+            warrior.Equip(testPlateBody);
             double expected = Math.Round((7 * 1.1) * (1 + ((5 + 1) / 100.00)), 2);
             // Act
             double actual = warrior.Damage();
@@ -141,8 +145,8 @@ namespace RPGCharactersTests
             Weapon testAxe = new Weapon("Common axe", 1, Slot.WEAPON_SLOT, WeaponType.WEAPON_AXE, weaponAttributes);
             PrimaryAttributes armorAttributes = new PrimaryAttributes(1, 0, 0);
             Armor testPlateBody = new Armor("Common plate body armor", 1, Slot.BODY_SLOT, ArmorType.ARMOR_PLATE, armorAttributes);
-            warrior.equip(testAxe);
-            warrior.equip(testPlateBody);
+            warrior.Equip(testAxe);
+            warrior.Equip(testPlateBody);
 
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Name: TestWarrior");

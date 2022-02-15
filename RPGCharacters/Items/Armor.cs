@@ -12,15 +12,15 @@ namespace RPGCharacters.Items
     public class Armor : Item
     {
         private ArmorType armorType;
-        private PrimaryAttributes attributes;
+        private PrimaryAttributes armorAttributes;
 
         public Armor(string name, int level, Slot slot, ArmorType armorType, PrimaryAttributes attributes) : base(name, level, slot)
         {
             this.armorType = armorType;
-            this.attributes = attributes;
+            this.armorAttributes = attributes;
         }
 
         public ArmorType ArmorType { get => this.armorType; }
-        public PrimaryAttributes Attributes { get => this.attributes; }
+        public PrimaryAttributes ArmorAttributes { get => this.armorAttributes; }
     }
 }
